@@ -1,5 +1,8 @@
 extends layout
-
+block css
+  link(rel='stylesheet', href='./css/main.css')
 block content
-  h1= title
-  p Welcome to #{title}
+
+  script(src='//code.jquery.com/jquery-2.2.3.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js')
+  script(src='./js/main.js')
