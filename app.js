@@ -4,11 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+var app = express();  
+// call socket.io to the app
+app.io = require('socket.io')();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));  
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,12 +26,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('node-sass-middleware')({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true,
-  sourceMap: true
-}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
@@ -62,5 +62,23 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// start listen with socket.io
+app.io.on('connection', function(socket){  
+  console.log('a user connected');
+  fs.readFile('./public/json/result.json', 'utf8', function (err, data) {
+    if (!err) 
+      socket.emit('fcc_info', JSON.parse(data));
+    else 
+      throw err;
+  });
+  setInterval(function() {
+    fs.readFile('./public/json/result.json', 'utf8', function (err, data) {
+      if (!err) 
+        socket.emit('fcc_info', JSON.parse(data));
+      else 
+        throw err;
+    });
+  }, 10000);
+});
 
-module.exports = app;
+module.exports = app;  
