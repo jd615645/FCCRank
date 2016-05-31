@@ -8,8 +8,8 @@ jQuery(document).ready(function($) {
     compele_list = [];
     for (var i = 0; i < fcc_info.length; i++) {
       adduser(fcc_info[i]);
-      for (var j = 0; j < fcc_info[i].challenges.length; j++) {
-        compele_list.push(fcc_info[i].username + ' completed "' + fcc_info[i].challenges[j].name + '"');
+      for (var j = 0; j < fcc_info[i].challenge.length; j++) {
+        compele_list.push(fcc_info[i].username + ' completed "' + fcc_info[i].challenge[j] + '"');
       };
       $('tr:nth-child(' + (i+1) + ') .compelebar').progress({
         percent: fcc_info[i].source / MAX * 100
