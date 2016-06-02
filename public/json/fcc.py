@@ -6,9 +6,18 @@ from bs4 import BeautifulSoup
 import lxml
 import json
 
-username = ["jd615645", "jayhung97724", "lukechu1997"]
-# username = ["jd615645"]
+
+sheet_src = '1PCCnOeg4gbIFhPT5H2wuo6gWHnobt0hCdJSZLCyAXaA'
+url = 'https://spreadsheets.google.com/feeds/list/' + sheet_src + '/1/public/values?alt=json'
+
+username = []
 fcc_info = []
+# username = ["jd615645", "jayhung97724", "lukechu1997"]
+
+inputdata = requests.get(url).json()
+for name in inputdata['feed']['entry']:
+  username.append(name['gsx$username']['$t'])
+
 
 for name in username:
   #送出GET請求到遠端伺服器，伺服器接受請求後回傳<Response [200]>，代表請求成功

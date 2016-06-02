@@ -2,7 +2,7 @@ extends layout
 block css
   link(rel='stylesheet', href='/css/main.css')
 block content
-  .ui.container#fcc_info
+  .ui.container#fcc-info
     .title
       img(src='./img/html5-css3-js.png')
       .completedlist
@@ -22,7 +22,14 @@ block content
         //-     .ui.statistic
         //-       .value 50
         //-       .label 題
-  
+    .ui.modal.info-window
+      i.close.icon
+      .header
+        | 我是標題喔ヽ(✿ﾟ▽ﾟ)ノ
+      .content
+        table
+           
+
 block append js
   script(src='./socket.io/socket.io.js')
   script(src='./js/main.js')
