@@ -6,19 +6,19 @@ body {
 #fcc-info {
   padding-top: 30px;
   height: 100%;
+  table {
+    text-align: center;
+  }
 }
 table {
   width: 100%;
 }
-#fcc-info table {
-  text-align: center;
-}
 .title {
   width: 100%;
   text-align: center;
-}
-.title img {
-  width: 60%;
+  img {
+    width: 60%;
+  }
 }
 @media screen and ( min-width: 970px ) {
   .title img {
@@ -39,21 +39,24 @@ table {
   overflow-y: scroll;
   height: 60%;
 }
-tr td:first-child {
-  padding: 10px;
+tr {
+  &:nth-child(odd) {
+    background-color: #DBE2EF;
+  }
+  &::hover {
+    background-color: rgba(122, 165, 210, 0.52);
+  }
+  td:first-child {
+    padding: 10px;
+    img {
+      width: 60%;
+    }
+  }
 }
-tr td:first-child img {
-  width: 60%;
+.content {
+  overflow-y: scroll;
+  height: 500px;
 }
-tr:nth-child(odd) {
-  background-color: #DBE2EF;
-  /*border-width: 1px 0px;*/
-  /*border-style: solid;*/
-}
-tr:hover {
-  background-color: rgba(122, 165, 210, 0.52);
-}
-
 /*scrollbar css*/
 ::-webkit-scrollbar-track
 {

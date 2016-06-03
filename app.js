@@ -78,7 +78,7 @@ app.io.on('connection', function(socket){
       else 
         throw err;
     });
-  }, 10000);
+  }, 5000);
 });
 
 module.exports = app;  

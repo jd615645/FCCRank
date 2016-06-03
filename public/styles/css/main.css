@@ -1,0 +1,65 @@
+@charset "UTF-8";
+body {
+  background: #EEEEEE;
+  color: #303841;
+  font-family: 'Roboto', '黑體-繁', '微軟正黑體', sans-serif; }
+
+#fcc-info {
+  padding-top: 30px;
+  height: 100%; }
+  #fcc-info table {
+    text-align: center; }
+
+table {
+  width: 100%; }
+
+.title {
+  width: 100%;
+  text-align: center; }
+  .title img {
+    width: 60%; }
+
+@media screen and (min-width: 970px) {
+  .title img {
+    width: 40%; } }
+
+.username {
+  text-align: left; }
+
+.completedlist {
+  padding-bottom: 15px;
+  min-height: 38px; }
+
+.completedlist h3 {
+  display: none; }
+
+.main-page {
+  overflow-y: scroll;
+  height: 60%; }
+
+tr:nth-child(odd) {
+  background-color: #DBE2EF; }
+
+tr::hover {
+  background-color: rgba(122, 165, 210, 0.52); }
+
+tr td:first-child {
+  padding: 10px; }
+  tr td:first-child img {
+    width: 60%; }
+
+.content {
+  overflow-y: scroll;
+  height: 500px; }
+
+/*scrollbar css*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5; }
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5; }
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5); }
