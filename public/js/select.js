@@ -3,7 +3,8 @@ jQuery(document).ready(function($) {
       compele_list = [],
       user = [],
       challenge_list = [],
-      MAX;
+      MAX,
+      menu = 0;
 
   $.getJSON('./json/challenge_list.json', function(data) {
     challenge_list = data[0]['html'];
@@ -21,6 +22,7 @@ jQuery(document).ready(function($) {
         var username = fcc_info[i].username,
             source = 0,
             completed_list = [],
+            all_completed_challenge = fcc_info[i].challenge,
             fcc_completed_list = fcc_info[i].challenge;
 
         $.each(challenge_list, function(key, val) {
@@ -32,7 +34,7 @@ jQuery(document).ready(function($) {
 
         // first get user's data
         if($('table #' + username).length == 0) {
-          user[username] = { username: username, img: fcc_info[i].img, source: source,
+          user[username] = { username: username, img: fcc_info[i].img, source: source,all_completed: all_completed_challenge ,
             completed_list: completed_list };
           adduser(user[username]);
           $('table #' + username + ' .compelebar').progress({
@@ -45,6 +47,7 @@ jQuery(document).ready(function($) {
           if(user[username].source != source) {
             user[username].source = source;
             user[username].completed_list = completed_list;
+            user[username].all_completed = all_completed_challenge;
             $('table #' + username + ' .challenges .label').text('(' + source + '/' + MAX + ')');
             $('table #' + username + ' .source .value').html(source);
             $('table #' + username + ' .compelebar').progress({
@@ -61,8 +64,23 @@ jQuery(document).ready(function($) {
     $(document).on('click', '.source', function(){
       var username = $(this).parent('tr').attr('id');
       $('.ui.modal').modal('show');
-      showlist(username, user[username].completed_list);
+      var which = parseInt($('.ui.menu a.active').attr('value'));
+      if(which = 0) {
+        showlist(username, user[username].all_completed, which);
+      }
+      else {
+        showlist(username, user[username].completed_list, which);
+      }
     })
+    $('.ui.menu a').click(function() {
+      var $before = $('.ui.menu').find('.active');
+      $before.removeClass('active');
+      $(this).addClass('active');
+      var which = parseInt($before.attr('value'));
+      $('table[value='+ which +']').hide();
+      which = parseInt($(this).attr('value'));
+      $('table[value='+ which +']').show();
+    });
   });
 
   function timeout() {
@@ -79,19 +97,22 @@ jQuery(document).ready(function($) {
   // init sematic-ui modal
   $('.ui.modal').modal();
   timeout();
+  $('table[value="1"]').hide();
 
   // add user on table
   function adduser(info) {
-    var html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://www.freecodecamp.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a><div class="ui indicating progress compelebar" data-percent="22"><div class="bar" style="transition-duration: 300ms; width: 22%;"></div><div class="label">(' + info.source + '/' + MAX + ')</div></div></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.source + '</div><div class="label">題</div></div></td></tr>';
-    $('#fcc-info table').append(html);
+    var html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://github.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.all_completed.length + '</div><div class="label">題</div></div></td></tr>';
+    $('#fcc-info table[value="0"]').append(html);
+    html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://www.freecodecamp.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a><div class="ui indicating progress compelebar" data-percent="22"><div class="bar" style="transition-duration: 300ms; width: 22%;"></div><div class="label">(' + info.source + '/' + MAX + ')</div></div></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.source + '</div><div class="label">題</div></div></td></tr>';
+    $('#fcc-info table[value="1"]').append(html);
   }
-  function showlist(username, info) {
+  function showlist(username, info, which) {
     var html;
-    $('.info-window table').empty();
+    $('table[valeu=' + which + '].info-window table').empty();
     $('.info-window .header').text(username + " 的解題紀錄");
     for (var i = 0; i < info.length; i++) {
       html = '<tr><td>' + info[i] + '</td></tr>'
-      $('.info-window table').append(html);
+      $('table[valeu=' + which + '] .info-window table').append(html);
     };
   }
 });
