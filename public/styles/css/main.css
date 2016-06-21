@@ -48,6 +48,12 @@ tr td:first-child {
   tr td:first-child img {
     width: 60%; }
 
+tr .source:hover .value {
+  color: white; }
+
+tr .source:hover .label {
+  color: white; }
+
 .content {
   overflow-y: scroll;
   height: 500px; }

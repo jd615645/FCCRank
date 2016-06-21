@@ -52,6 +52,14 @@ tr {
       width: 60%;
     }
   }
+  .source:hover {
+    .value {
+      color: white;
+    }
+    .label {
+      color: white;
+    }
+  }
 }
 .content {
   overflow-y: scroll;

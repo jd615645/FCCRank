@@ -87,6 +87,7 @@ jQuery(document).ready(function($) {
   }
   function showlist(username, info) {
     var html;
+    $('.info-window table').empty();
     $('.info-window .header').text(username + " 的解題紀錄");
     for (var i = 0; i < info.length; i++) {
       html = '<tr><td>' + info[i] + '</td></tr>'
