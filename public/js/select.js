@@ -65,11 +65,11 @@ jQuery(document).ready(function($) {
       var username = $(this).parent('tr').attr('id');
       $('.ui.modal').modal('show');
       var which = parseInt($('.ui.menu a.active').attr('value'));
-      if(which = 0) {
-        showlist(username, user[username].all_completed, which);
+      if(which == 0) {
+        showlist(username, user[username].all_completed);
       }
       else {
-        showlist(username, user[username].completed_list, which);
+        showlist(username, user[username].completed_list);
       }
     })
     $('.ui.menu a').click(function() {
@@ -106,13 +106,13 @@ jQuery(document).ready(function($) {
     html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://www.freecodecamp.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a><div class="ui indicating progress compelebar" data-percent="22"><div class="bar" style="transition-duration: 300ms; width: 22%;"></div><div class="label">(' + info.source + '/' + MAX + ')</div></div></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.source + '</div><div class="label">題</div></div></td></tr>';
     $('#fcc-info table[value="1"]').append(html);
   }
-  function showlist(username, info, which) {
+  function showlist(username, info) {
     var html;
-    $('table[valeu=' + which + '].info-window table').empty();
+    $('.info-window table').empty();
     $('.info-window .header').text(username + " 的解題紀錄");
     for (var i = 0; i < info.length; i++) {
       html = '<tr><td>' + info[i] + '</td></tr>'
-      $('table[valeu=' + which + '] .info-window table').append(html);
+      $('.info-window table').append(html);
     };
   }
 });
