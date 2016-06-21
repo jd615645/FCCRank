@@ -4,14 +4,21 @@ jQuery(document).ready(function($) {
   var compele_list = [];
   var user = [];
 
+  // listen socker emit 'fcc_info'
   socket.on('fcc_info', function(fcc_info) {
-    // $('#fcc-info table').html('');
+    // 計算完成題目
     compele_list = [];
     for (var i = 0; i < fcc_info.length; i++) {
+      /* 
+        username: fcc's username
+        source: 完成指定的題目數量
+        completed_list: 完成的的題目
+       */
       var username = fcc_info[i].username,
           source = fcc_info[i].source,
           completed_list = fcc_info[i].challenge;
 
+      // first get user's data
       if($('table #' + username).length == 0) {
         adduser(fcc_info[i]);
         user[username] = {source: source, completed_list: completed_list}
@@ -19,9 +26,9 @@ jQuery(document).ready(function($) {
           percent: fcc_info[i].source / MAX * 100
         });
       }
+      // already have this user's data
       else {
-        // console.log(user[username].completed_list.length);
-
+        // have new sourse data
         if(user[username].source != source) {
           user[username].source = source;
           user[username].completed_list = completed_list;
@@ -56,6 +63,7 @@ jQuery(document).ready(function($) {
     }, 1500);
   }
 
+  // init sematic-ui modal
   $('.ui.modal').modal();
   timeout();
 

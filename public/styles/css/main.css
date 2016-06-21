@@ -40,7 +40,7 @@ table {
 tr:nth-child(odd) {
   background-color: #DBE2EF; }
 
-tr::hover {
+tr:hover {
   background-color: rgba(122, 165, 210, 0.52); }
 
 tr td:first-child {

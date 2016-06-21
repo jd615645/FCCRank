@@ -43,7 +43,7 @@ tr {
   &:nth-child(odd) {
     background-color: #DBE2EF;
   }
-  &::hover {
+  &:hover {
     background-color: rgba(122, 165, 210, 0.52);
   }
   td:first-child {
