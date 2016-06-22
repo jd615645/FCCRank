@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
             $('table #' + username + ' .challenges .label').text('(' + source + '/' + MAX + ')');
             $('table #' + username + ' .source .value').html(source);
             $('table #' + username + ' .compelebar').progress({
-              percent: fcc_info[i].source / MAX * 100
+              percent: user[username].source / MAX * 100
             });
           }
         }
@@ -101,7 +101,7 @@ jQuery(document).ready(function($) {
 
   // add user on table
   function adduser(info) {
-    var html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://github.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.all_completed.length + '</div><div class="label">題</div></div></td></tr>';
+    var html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://www.freecodecamp.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.all_completed.length + '</div><div class="label">題</div></div></td></tr>';
     $('#fcc-info table[value="0"]').append(html);
     html = '<tr id="' + info.username + '"><td width="25%" class="userpic"><img src="' + info.img + '" class="userpic"></td><td width="50%" class="challenges"><a href="https://www.freecodecamp.com/' + info.username + '" target="_blank"><h3 class="username">' + info.username + '</h3></a><div class="ui indicating progress compelebar" data-percent="22"><div class="bar" style="transition-duration: 300ms; width: 22%;"></div><div class="label">(' + info.source + '/' + MAX + ')</div></div></td><td width="25%" class="source"><div class="ui statistic"><div class="value">' + info.source + '</div><div class="label">題</div></div></td></tr>';
     $('#fcc-info table[value="1"]').append(html);
