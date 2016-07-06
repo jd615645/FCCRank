@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
 var gulpPlumber = require('gulp-plumber');
+var nodemon = require('gulp-nodemon');
 
 gulp.task('sass', function(){
   gulp.src('./public/styles/scss/*.scss') /*來源檔案*/
@@ -21,6 +22,21 @@ gulp.task('sass', function(){
 gulp.task('watch', function(){
 // gulp.watch(['*.html'],['cp']); /* 監聽所有 *.html 和 cp task的檔案 */
 gulp.watch(['./public/styles/scss/*.scss'],['sass']); /* 監聽style資料夾下所有scss的檔案 */
+});
+
+gulp.task('nodemon', function(cb) {
+  var called = false;
+  return nodemon({
+    script: './bin/www',
+    ext: 'js',
+    ignore: ['./public/**'],
+    nodeArgs: ['--debug']
+  }).on('start', function() {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  });
 });
 
 

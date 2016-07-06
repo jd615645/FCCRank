@@ -39,6 +39,12 @@ table {
   overflow-y: scroll;
   height: 60%;
 }
+thead tr {
+  background-color: #B9D7EA !important;
+  th {
+    padding: 5px;
+  }
+}
 tr {
   &:nth-child(odd) {
     background-color: #DBE2EF;

@@ -7,17 +7,19 @@ import lxml
 import json
 
 
-sheet_src = '1PCCnOeg4gbIFhPT5H2wuo6gWHnobt0hCdJSZLCyAXaA'
+# sheet_src = '1PCCnOeg4gbIFhPT5H2wuo6gWHnobt0hCdJSZLCyAXaA'
+sheet_src = '1Ko9wobdxLu2mQRj4z--GrlHZxIgDwweiOeXOUgZQSxw'
 url = 'https://spreadsheets.google.com/feeds/list/' + sheet_src + '/1/public/values?alt=json'
 
 username = []
+team = []
 fcc_info = []
 # username = ["jd615645", "jayhung97724", "lukechu1997"]
 
 inputdata = requests.get(url).json()
 for name in inputdata['feed']['entry']:
   username.append(name['gsx$username']['$t'])
-
+  team.append(name['gsx$team']['$t'])
 
 for name in username:
   #送出GET請求到遠端伺服器，伺服器接受請求後回傳<Response [200]>，代表請求成功
@@ -38,7 +40,7 @@ for name in username:
     challenge.append(select)
 
   fcc_info.append({'username': name, 'source': source, 'img': img, 'challenge': challenge})
-  
+
 # print json.dumps(fcc_info)
 with open('result.json', 'w') as f:
   json.dump(fcc_info, f)

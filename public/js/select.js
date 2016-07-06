@@ -1,10 +1,11 @@
 jQuery(document).ready(function($) {
-  var socket = io.connect(),    
+  var socket = io.connect(),
       compele_list = [],
       user = [],
       challenge_list = [],
       MAX,
       menu = 0;
+
 
   $.getJSON('./json/challenge_list.json', function(data) {
     challenge_list = data[0]['html'];
@@ -14,8 +15,8 @@ jQuery(document).ready(function($) {
       // 計算完成題目
       compele_list = [];
       for (var i = 0; i < fcc_info.length; i++) {
-        /* 
-          username: fcc's username
+        /*
+          username: fcc'suser[username] username
           source: 完成指定的題目數量
           completed_list: 完成的的題目
          */
@@ -98,6 +99,13 @@ jQuery(document).ready(function($) {
   $('.ui.modal').modal();
   timeout();
   $('table[value="1"]').hide();
+
+  // sort rank
+  function sortrank() {
+    $.each(user, function(key, val) {
+      console.log(key + ': ' + val);
+    });
+  }
 
   // add user on table
   function adduser(info) {

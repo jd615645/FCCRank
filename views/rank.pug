@@ -1,0 +1,26 @@
+extends layout
+block css
+  link(rel='stylesheet', href='/styles/css/rank.css')
+block content
+  .ui.container
+    .ui.five.column.grid.stacked#fcc
+      //- .column#jd615645
+      //-   .ui.card
+      //-     .image
+      //-       img(src='//workshop.nyannyan.space/img/pic.jpg')
+      //-     .content
+      //-       a.header(href='#') jd615645
+      //-       .description
+      //-         p
+      //-           span 58
+      //-           | 題
+  .ui.modal.info-window
+    i.close.icon
+    .header
+      | 我是標題喔ヽ(✿ﾟ▽ﾟ)ノ
+    .content
+      table
+
+block append js
+  script(src='./socket.io/socket.io.js')
+  script(src='./js/rank.js')

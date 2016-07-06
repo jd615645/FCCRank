@@ -14,7 +14,11 @@ block content
         | HTML
     .main-page
       #type
-        table(value='0')
+        table.sortable(value='0')
+          tr
+            th user
+            th FCC page
+            th 題數
           //- tr
           //-   td.userpic(width='25%')
           //-     img.userpic(src='https://avatars.githubusercontent.com/u/9366364?v=3')
@@ -28,15 +32,20 @@ block content
           //-     .ui.statistic
           //-       .value 50
           //-       .label 題
-        table(value='1')
+        table.sortable(value='1')
+          tr
+            th user
+            th 完成度
+            th 題數
     .ui.modal.info-window
       i.close.icon
       .header
         | 我是標題喔ヽ(✿ﾟ▽ﾟ)ノ
       .content
         table
-           
+
 
 block append js
+  script(src='http://www.kryogenix.org/code/browser/sorttable/sorttable.js')
   script(src='./socket.io/socket.io.js')
   script(src='./js/select.js')

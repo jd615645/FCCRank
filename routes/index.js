@@ -6,5 +6,8 @@ var io = require('socket.io')();
 router.get('/', function(req, res, next) {
   res.render('index');
 });
+router.get('/rank', function(req, res, next) {
+  res.render('rank');
+});
 
 module.exports = router;
